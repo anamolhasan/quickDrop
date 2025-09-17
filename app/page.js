@@ -1,16 +1,25 @@
-import Banner from "@/components/Banner";
-import WhyChose from "@/components/WhyChose";
-import Image from "next/image";
-import FAQ from "../components/FAQ/FAQ";
-import FeedbackForm from "../components/FeedbackForm/FeedbackForm";
+import Banner from "@/components/home/banner/Banner";
+import WeWork from "@/components/home/WeWORK";
+import State from "@/components/home/State"
+import Review from "@/components/home/Review"
+import FeedbackForm from "@/components/home/FeedbackForm/FeedbackForm";
+import WhyChose from "@/components/home/whyChose/WhyChose";
+import FAQ from "@/components/home/FAQ/FAQ";
+import OurService from "@/components/home/OurService"
+import Complanbox from "@/components/home/Complanbox"
 
 export default function Home() {
   return (
     <>
-      <Banner></Banner>
-      <WhyChose></WhyChose>
+      <Banner/>
+      <WeWork/>
+      <WhyChose/>
+      <State/>
+      <OurService/>
       <FAQ/>
-      <FeedbackForm></FeedbackForm>
+      <Review/>
+      <FeedbackForm/>
+      <Complanbox/>
     </>
   );
 }
