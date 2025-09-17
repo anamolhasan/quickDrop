@@ -4,12 +4,13 @@ import React from "react";
 const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Services", path: "/services" },
+    { name: "Pricing", path: "/pricing" },
+    { name: "Be a Rider", path: "/be-a-rider" },
+     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
   return (
-    <nav className="h-16 bg-gray-50 shadow-md">
+    <nav className="h-16 bg-red-50 shadow-md sticky top-0 z-40">
       <div className="h-full max-w-7xl mx-auto flex item-center justify-between">
         <div className="flex items-center">
           <h1 className="text-3xl font-bold">
@@ -20,7 +21,7 @@ const Navbar = () => {
           {/* navlink */}
           <div className="flex items-center space-x-8 font-medium text-[16px]">
             {navItems.map((item, index) => (
-              <Link href="" key={index} className="text-black transition">
+              <Link href={item.path} key={index} className="text-black transition">
                 {item.name}
               </Link>
             ))}
