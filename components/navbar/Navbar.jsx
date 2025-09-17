@@ -20,7 +20,7 @@ const Navbar = () => {
           {/* navlink */}
           <div className="flex items-center space-x-8 font-medium text-[16px]">
             {navItems.map((item, index) => (
-              <Link href="" key={index} className="text-black transition">
+              <Link href={item.path} key={index} className="text-black transition">
                 {item.name}
               </Link>
             ))}
