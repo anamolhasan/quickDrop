@@ -15,8 +15,8 @@ const index = () => {
                         QuickDrop delivers your parcels to every corner of Bangladesh right
                         on time.</p>
                 </div>
-                <div className='w-1/2 flex justify-end'>
-                    <Image className='rounded' width={500} height={500} src='/parcelhomedelivery.png' alt='customer setisfy img' />
+                <div className='md:w-1/2 md:flex md:justify-end'>
+                    <Image style={{ height: "auto", width: "auto" }} className='rounded' width={500} height={500} src='/parcelhomedelivery.png' alt='customer setisfy img' />
                 </div>
             </div>
         </div >
