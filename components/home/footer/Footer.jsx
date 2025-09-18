@@ -1,6 +1,11 @@
 import Link from "next/link";
 import React from "react";
-import { FaFacebook, FaTwitter, FaYoutube, FaYoutubeSquare } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaYoutube,
+  FaYoutubeSquare,
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -67,7 +72,9 @@ const Footer = () => {
               </ul>
             </div>
             <div className="space-y-3">
-              <h3 className="uppercase dark:text-gray-900 font-bold">Developers</h3>
+              <h3 className="uppercase dark:text-gray-900 font-bold">
+                Developers
+              </h3>
               <ul className="space-y-1">
                 <li>
                   <Link rel="noopener noreferrer" href="#">
@@ -87,7 +94,9 @@ const Footer = () => {
               </ul>
             </div>
             <div className="space-y-3">
-              <div className="uppercase dark:text-gray-900 font-bold">Social media</div>
+              <div className="uppercase dark:text-gray-900 font-bold">
+                Social media
+              </div>
               <div className="flex justify-start space-x-3">
                 <Link
                   rel="noopener noreferrer"
@@ -95,7 +104,7 @@ const Footer = () => {
                   title="Facebook"
                   className="flex items-center p-1"
                 >
-                 <FaFacebook />
+                  <FaFacebook />
                 </Link>
                 <Link
                   rel="noopener noreferrer"
@@ -111,7 +120,7 @@ const Footer = () => {
                   title="YouTube"
                   className="flex items-center p-1"
                 >
-                 <FaYoutubeSquare />
+                  <FaYoutubeSquare />
                 </Link>
               </div>
             </div>
