@@ -1,11 +1,16 @@
-import React from 'react';
 
-const page = () => {
+import React from 'react';
+import ContactBanner from './components/ContactBanner';
+import ContactUs from './components/ContactUs';
+
+const contactPage = () => {
     return (
-        <div>
-            <h1 className='text-5xl text-center min-h-screen'>contact</h1>
+        <div className=' w-11/12 mx-auto '>
+            {/* <h1 >contact</h1> */}
+            <ContactBanner />
+            <ContactUs />
         </div>
     );
 };
 
-export default page;
+export default contactPage;
