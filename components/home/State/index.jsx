@@ -15,7 +15,7 @@ const index = () => {
                     <div className='bg-base-200 rounded-full border border-gray-200 dark:border-slate-700 
                 flex items-center justify-center py-12 shadow-xl'>
                         <div >
-                            <Image width={80} height={80} className='mx-auto' src="/registerUser.svg" alt="" />
+                            <Image width={80} height={80} className='mx-auto w-20 h-20' src="/registerUser.svg" alt="" />
                             <h2 className='my-2 text-5xl font-bold'><span id="counter"></span>+1240</h2>
                             <p className='text-gray-500 dark:text-gray-300'>Registered User</p>
                         </div>
