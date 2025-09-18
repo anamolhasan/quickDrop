@@ -1,11 +1,23 @@
+import CourierSolutions from "./components/CourierSolutions";
+import SendPackage from "./components/SendPackage";
 
+const AboutPage = () => {
+  return (
+    <div>
+      {/* Title Section */}
+      <h1 className="text-xl md:text-3xl lg:text-5xl text-center font-bold py-6 md:py-12">
+        Why <span className="text-blue-500">Quick Drop</span> Courier Service (Pvt.) Ltd
+      </h1>
 
-const page = () => {
-    return (
-        <div className="min-h-screen">
-            <h1 className="text-6xl text-center">About page</h1>
-        </div>
-    );
+      {/* About Section */}
+       <CourierSolutions />
+
+      
+
+      {/* Call to Action */}
+       <SendPackage />
+    </div>
+  );
 };
 
-export default page;
+export default AboutPage;
