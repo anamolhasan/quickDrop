@@ -24,7 +24,7 @@ export default function Banner() {
               <FaBox />
               Send Parcel
             </button>
-            <Link href='/track-product'>
+            <Link href="/track-product">
               <button className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gray-900 hover:bg-gray-800 transition shadow-md text-white font-semibold dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200">
                 <FaSearch />
                 Track Now
