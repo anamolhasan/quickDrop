@@ -5,7 +5,7 @@ import { FaFacebook, FaTwitter, FaYoutubeSquare } from "react-icons/fa";
 const Footer = () => {
   return (
     <div>
-      <footer className="px-4 divide-y bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
+      <footer className="px-4 divide-y bg-white text-gray-800 dark:bg-black dark:text-gray-200 transition-colors duration-300">
         <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
           {/* Logo */}
           <div className="lg:w-1/3 mx-auto ">

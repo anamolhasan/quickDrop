@@ -3,7 +3,7 @@ import React from "react";
 
 const CourierSolutions = () => {
   return (
-    <section className="py-12 px-6 k md:px-16    transition-colors duration-300">
+    <section className="py-12 px-6 k md:px-16    transition-colors duration-300 bg-white">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Text Section */}
         <div>
@@ -40,11 +40,11 @@ const CourierSolutions = () => {
         {/* Image Section */}
         <div className="flex justify-center">
           <Image
-          width={100}
-          height={100}
-            src="/courier-delivery.svg"
+          width={80}
+          height={80}
+            src="/about/shop-feature.svg"
             alt="Quick Drop Courier"
-            className="w-full max-w-md rounded-2xl "
+            className="w-full max-w-md rounded-2xl text-black"
           />
         </div>
       </div>

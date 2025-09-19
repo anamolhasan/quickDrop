@@ -5,7 +5,7 @@ import ContactUs from './components/ContactUs';
 
 const contactPage = () => {
     return (
-        <div className=' w-11/12 mx-auto '>
+        <div className='  bg-white'>
             {/* <h1 >contact</h1> */}
             <ContactBanner />
             <ContactUs />
