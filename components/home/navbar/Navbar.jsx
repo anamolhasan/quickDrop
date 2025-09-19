@@ -29,9 +29,11 @@ const Navbar = () => {
           {/* login logout btn */}
           <div className="flex items-center">
             <div className="flex gap-x-4 ">
-              <button className="bg-amber-500  text-white font-medium rounded-md px-4 py-2">
+             <Link href='/login'>
+              <button  className="bg-amber-500  text-white font-medium rounded-md px-4 py-2">
                 login
               </button>
+             </Link>
               <button className="bg-amber-500  text-white font-medium rounded-md px-4 py-2">
                 logout
               </button>
