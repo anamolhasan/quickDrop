@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function ContactBanner() {
   return (
-    <div className='md:flex items-center justify-center gap-36 py-10 my-10'>
+    <div className='md:flex items-center justify-center gap-36 py-20 text-black'>
         <div>
             <h1 className='text-xl md:text-2xl lg:text-5xl font-bold mb-4'>Quick Drop Press</h1>
             <p className='md:text-xl'>Our press release, coverage and press kit</p>
