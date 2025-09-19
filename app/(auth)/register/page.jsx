@@ -15,7 +15,7 @@ const page = () => {
     console.log(data);
   };
   return (
-    <div className="flex flex-col pt-24 mb-15 mx-4 md:mx-0 md:py-40 justify-center text-gray-800">
+    <div className="flex flex-col mx-4 md:mx-0  justify-center text-gray-800">
       <div className="flex flex-col items-center">
         {/* <Logo /> */}
         <p>Logo</p>
@@ -29,7 +29,7 @@ const page = () => {
       >
         <fieldset className="text-[16px] space-y-5">
           {/* Name Field */}
-          <div className="flex items-center bg-gray-100 border border-gray-300 rounded-md px-3 focus-within:border-[#00B795]">
+          <div className="flex items-center bg-gray-100 border border-gray-300 rounded-md px-3 focus-within:border-amber-500">
             <IoPersonAddOutline size={27} className="text-gray-500 mr-2" />
             <input
               type="text"
@@ -43,7 +43,7 @@ const page = () => {
           )}
 
           {/* Image Field */}
-          <div className="flex items-center bg-gray-100 border border-gray-300 rounded-md px-3 focus-within:border-[#00B795]">
+          <div className="flex items-center bg-gray-100 border border-gray-300 rounded-md px-3 focus-within:border-amber-500">
             <CiImageOn size={27} className="mr-2" />
             <input
               type="file"
@@ -54,7 +54,7 @@ const page = () => {
           </div>
 
           {/* Email Field */}
-          <div className="flex items-center bg-gray-100 border border-gray-300 rounded-md px-3 focus-within:border-[#00B795]">
+          <div className="flex items-center bg-gray-100 border border-gray-300 rounded-md px-3 focus-within:border-amber-500">
             <MdOutlineMail size={27} className="text-gray-500 mr-2" />
             <input
               type="email"
@@ -68,7 +68,7 @@ const page = () => {
           )}
 
           {/* Password Field */}
-          <div className="flex items-center bg-gray-100 border border-gray-300 rounded-md px-3 focus-within:border-[#00B795]">
+          <div className="flex items-center bg-gray-100 border border-gray-300 rounded-md px-3 focus-within:border-amber-500">
             <MdLockOutline size={27} className="text-gray-500 mr-2" />
             <input
               type="password"
