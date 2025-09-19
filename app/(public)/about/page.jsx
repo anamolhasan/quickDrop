@@ -1,3 +1,4 @@
+import CoreValues from "./components/CoreValues";
 import CourierSolutions from "./components/CourierSolutions";
 import SendPackage from "./components/SendPackage";
 
@@ -12,7 +13,8 @@ const AboutPage = () => {
       {/* About Section */}
        <CourierSolutions />
 
-      
+      {/* Core value */}
+      <CoreValues />
 
       {/* Call to Action */}
        <SendPackage />
