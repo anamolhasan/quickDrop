@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { MdEmail, MdLock } from "react-icons/md";
 
 const page = () => {
     const {
@@ -12,7 +13,7 @@ const page = () => {
      console.log(data)
   };
   return (
-    <div className="flex flex-col justify-center pt-24 mb-15 md:py-50 px-4 md:px-0 text-gray-800">
+    <div className="flex flex-col justify-center px-4 md:px-0 text-gray-800">
       <div className="flex flex-col items-center">
         <p>Logo</p>
 
@@ -28,8 +29,8 @@ const page = () => {
         <fieldset className="fieldset text-[16px]">
           {/* Email Field */}
           <div className="mb-5">
-            <div className="border border-gray-300 rounded-md bg-gray-100 flex items-center focus-within:border-[#00B795] transition-colors duration-300">
-              {/* <MdEmail size={27} className="text-gray-500 ml-4" /> */}
+            <div className="border border-gray-300 rounded-md bg-gray-100 flex items-center focus-within:border-amber-500 transition-colors duration-300">
+              <MdEmail size={27} className="text-gray-500 ml-4" />
               <input
                 type="email"
                 {...register("email", { required: true })}
@@ -46,8 +47,8 @@ const page = () => {
 
           {/* Password Field */}
           <div className="mb-5">
-            <div className="border border-gray-300 rounded-md bg-gray-100 flex items-center focus-within:border-[#00B795] transition-colors duration-300">
-              {/* <MdLock size={27} className="text-gray-500 ml-4" /> */}
+            <div className="border border-gray-300 rounded-md bg-gray-100 flex items-center focus-within:border-amber-500 transition-colors duration-300">
+              <MdLock size={27} className="text-gray-500 ml-4" />
               <input
                 type="password"
                 {...register("password", { required: true, minLength: 6 })}
