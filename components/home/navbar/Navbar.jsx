@@ -58,6 +58,7 @@
 
 
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -75,21 +76,39 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-1 text-gray-700 dark:text-gray-200 font-medium">
-          <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
+          <Link href="/">
+           <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
             Home
           </div>
-          <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
-            Services
-          </div>
+          </Link>
+         <Link href="/pricing">
           <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
             Pricing
           </div>
+        </Link>
+         <Link href="/be-a-rider">
+          <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
+            Be a rider
+          </div>
+        </Link>
+         <Link href="/contact">
           <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
             Contact
           </div>
+        </Link>
+         <Link href="/about">
+          <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
+            About
+          </div>
+        </Link>
+         
+         
+         <Link href="/login">
           <div className="ml-2 px-6 py-2 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 cursor-pointer">
             Login
           </div>
+         </Link>
+         
         </div>
 
         {/* Mobile Hamburger */}
@@ -105,40 +124,70 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-        isOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+        isOpen ? 'max-h-120 opacity-100' : 'max-h-0 opacity-0'
       }`}>
         <div className="bg-gray-50/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200/20 dark:border-gray-700/20">
           <div className="flex flex-col gap-2 py-6 px-6 text-gray-700 dark:text-gray-200 font-medium">
-            <div 
+            <Link href="/">
+             <div 
               className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center"
               onClick={toggleMenu}
             >
               Home
             </div>
-            <div 
-              className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center"
-              onClick={toggleMenu}
-            >
-              Services
-            </div>
-            <div 
+            </Link>
+            <Link href="/pricing">
+             <div 
               className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center"
               onClick={toggleMenu}
             >
               Pricing
             </div>
-            <div 
+            
+            </Link>
+            <Link href="/be-a-rider">
+              <div 
+              className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center"
+              onClick={toggleMenu}
+            >
+              Be a rider
+            </div>
+            
+            </Link>
+            <Link href="/contact">
+              <div 
               className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center"
               onClick={toggleMenu}
             >
               Contact
             </div>
+            
+            </Link>
+            <Link href="/about">
             <div 
+              className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center"
+              onClick={toggleMenu}
+            >
+              About
+            </div>
+            
+            </Link>
+            {/* <div 
+              className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center"
+              onClick={toggleMenu}
+            >
+              Home
+            </div> */}
+         
+         <Link href="/login">
+           <div 
               className="mt-2 mx-4 px-6 py-3 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 cursor-pointer text-center"
               onClick={toggleMenu}
             >
               Login
             </div>
+         </Link>
+          
           </div>
         </div>
       </div>
