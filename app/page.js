@@ -19,7 +19,7 @@ export default function Home() {
       <FAQ/>
       <Review/>
       <FeedbackForm/>
-      <Complanbox/>
+      {/* <Complanbox/> */}
     </>
   );
 }
