@@ -23,7 +23,7 @@ const Hero = () => {
       {/* Background Image for Mobile */}
       <div className="absolute inset-0 block md:hidden">
         <Image
-          src="/mobilebanner.png" // replace with your mobile image
+          src="/mobilebanner.png" 
           alt="QuickDrop Banner Mobile"
           fill
           priority
