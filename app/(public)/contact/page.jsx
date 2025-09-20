@@ -7,7 +7,7 @@ const contactPage = () => {
     return (
         <div className='  bg-white'>
             {/* <h1 >contact</h1> */}
-            <ContactBanner />
+            {/* <ContactBanner /> */}
             <ContactUs />
         </div>
     );
