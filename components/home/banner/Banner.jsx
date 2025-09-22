@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import Image from "next/image";
@@ -32,7 +30,7 @@ const Hero = () => {
       </div>
 
       {/* Overlay for readability */}
-      <div className="absolute inset-0 bg-black/60 dark:bg-black/60"></div>
+      <div className="absolute inset-0 bg-black/20 dark:bg-black/60"></div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 lg:px-10 text-center md:text-left">
