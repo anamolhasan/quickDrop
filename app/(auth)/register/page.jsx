@@ -5,6 +5,9 @@ import { MdOutlineMail } from "react-icons/md";
 import { CiImageOn } from "react-icons/ci";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { useForm } from "react-hook-form";
+import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { signIn } from "next-auth/react";
 const page = () => {
       const {
     register,
@@ -94,9 +97,33 @@ const page = () => {
             Register
           </button>
         </fieldset>
-        <div className="mt-6 text-center">
-          {/* <GoogleLogin></GoogleLogin> */}
-        </div>
+        {/* <div className="mt-6 text-center">
+        
+          <button>
+            Google 
+            </button>  
+            <button>
+              Github
+            </button>
+
+        </div> */}
+
+<div className="mt-6 text-center">
+       <button onClick={()=> signIn("google")}
+              className="flex items-center justify-center gap-2 w-full md:w-1/2 mx-auto bg-white text-gray-700 border border-gray-300 rounded-xl px-4 py-2 shadow-sm hover:shadow-md transition duration-200"
+            >
+              <FcGoogle className="text-xl" />
+              <span>Continue with Google</span>
+            </button>
+      
+            <button onClick={()=> signIn("github")}
+              className="flex items-center justify-center gap-2 w-full md:w-1/2 mx-auto bg-gray-900 text-white rounded-xl px-4 py-2 shadow-sm hover:bg-gray-800 transition duration-200"
+            >
+              <FaGithub className="text-xl" />
+              <span>Continue with GitHub</span>
+            </button>
+
+</div>
         {/* Login Link */}
         <p className="text-[18px] text-center mt-6">
           Already have an account?
