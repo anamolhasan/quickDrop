@@ -61,11 +61,13 @@ import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useSession, signOut } from "next-auth/react";
 
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const { data: session, status } = useSession();
+ 
 
   const handleLogout = () => {
     toggleMenu();
@@ -109,7 +111,11 @@ export default function Navbar() {
           </Link>
 
           {status === "authenticated" ? (
+            
             <div className="flex items-center gap-4 ml-4">
+              <div>
+                <Link href="/dashboard">Dashboard</Link>
+              </div>
               {session.user?.image ? (
                 <img
                   src={session.user.image}
