@@ -37,11 +37,6 @@ export default function RootLayout({ children }) {
       >
         <Providers>
 
-
-
-
-         
-
           {
             !shouldHide && <Navbar />
           }
