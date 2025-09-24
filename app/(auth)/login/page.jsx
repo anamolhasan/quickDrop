@@ -5,16 +5,48 @@ import { MdEmail, MdLock } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const page = () => {
+
+    const router = useRouter();
+
     const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-     console.log(data)
-  };
+ 
+   const onSubmit = async (data) => {
+  try {
+    const res = await fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+
+    if (res.ok) {
+      console.log("✅ Login successful:", result);
+       toast.success("✅ Login successful!");
+         setTimeout(() => router.push("/"), 1500);
+      // 👉 You can save the logged-in user in context, Redux, or localStorage
+      // localStorage.setItem("user", JSON.stringify(result.user));
+    } else {
+      console.error("❌ Login failed:", result.error);
+    }
+  } catch (error) {
+    console.error("Server error:", error);
+  }
+};
+
+   
+
+
   return (
     <div className="flex flex-col justify-center px-4 md:px-0 text-gray-800">
       <div className="flex flex-col items-center">
