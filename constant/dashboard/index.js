@@ -15,6 +15,11 @@ const DashboardSideMenuList = [
    
   },
   {
+    title: "User Feedback",
+    url: "/dashboard/user-feedback",
+   
+  },
+  {
     title: "Profile",
     url: "/dashboard/profile",
    

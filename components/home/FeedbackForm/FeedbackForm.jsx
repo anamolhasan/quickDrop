@@ -6,6 +6,7 @@ import React from "react";
 import toast from "react-hot-toast";
 
 const FeedbackForm = () => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const handleFeedback = (e) => {
     e.preventDefault()
@@ -18,7 +19,7 @@ const FeedbackForm = () => {
     // console.log(FeedbackForm)
     // toast.success('Successfully toasted!')
 
-    axios.post(`${import.meta.env.VITE_API_URL}/feedback`,FeedbackForm )
+    axios.post(`${apiUrl}/feedback`,FeedbackForm )
        .then(data => {
         // console.log(data)
         toast('Submit Feedback!', {
