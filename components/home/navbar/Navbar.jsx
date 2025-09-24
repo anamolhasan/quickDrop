@@ -55,11 +55,13 @@
 
 // export default Navbar;
 
+
 "use client";
 import Link from "next/link";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { useSession, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react"; 
+
 
 
 export default function Navbar() {
