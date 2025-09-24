@@ -3,6 +3,7 @@
 
 import axios from "axios";
 import React from "react";
+import toast from "react-hot-toast";
 
 const FeedbackForm = () => {
 
@@ -14,9 +15,19 @@ const FeedbackForm = () => {
     const formData = new FormData(form)
     const FeedbackForm = Object.fromEntries(formData.entries())
 
-    console.log(FeedbackForm)
+    // console.log(FeedbackForm)
+    // toast.success('Successfully toasted!')
 
-    // axios.post(`${import.meta.env.VITE_API_URL}/feedback`, )
+    axios.post(`${import.meta.env.VITE_API_URL}/feedback`,FeedbackForm )
+       .then(data => {
+        // console.log(data)
+        toast('Submit Feedback!', {
+          icon: '👍',
+        });
+       })
+       .catch(error => {
+        console.log(error)
+       })
 
     
     form.reset()
