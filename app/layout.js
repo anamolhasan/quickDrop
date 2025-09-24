@@ -3,8 +3,14 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/home/navbar/Navbar";
 import Footer from "@/components/home/footer/Footer";
+
+import { Providers } from "./providers"; // 👈 we'll create this
+import { Toaster } from "react-hot-toast";
+
+
 import { Providers } from "./providers";  // 👈 we'll create this
 import { usePathname } from "next/navigation";
+ development
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,8 +33,16 @@ export default function RootLayout({ children }) {
   const shouldHide = pathname.startsWith("/dashboard");
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <Providers>
+
+
+
+
+         
+
           {
             !shouldHide && <Navbar />
           }
@@ -37,6 +51,8 @@ export default function RootLayout({ children }) {
           {
             !shouldHide &&  <Footer />
           }
+           <Toaster></Toaster>
+
         </Providers>
       </body>
     </html>
