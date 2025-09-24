@@ -66,7 +66,8 @@ const page = () => {
         name: data.name,
         email: data.email,
         password: data.password,
-        photo: photoUrl
+        photo: photoUrl,
+        role: "user" 
       };
 
       const res = await fetch("http://localhost:5000/users", {
@@ -230,3 +231,10 @@ const page = () => {
 };
 
 export default page;
+
+
+
+
+
+
+
