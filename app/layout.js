@@ -4,13 +4,12 @@ import "./globals.css";
 import Navbar from "@/components/home/navbar/Navbar";
 import Footer from "@/components/home/footer/Footer";
 
-import { Providers } from "./providers"; // 👈 we'll create this
 import { Toaster } from "react-hot-toast";
 
 
 import { Providers } from "./providers";  // 👈 we'll create this
 import { usePathname } from "next/navigation";
- development
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
