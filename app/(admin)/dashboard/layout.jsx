@@ -5,9 +5,9 @@ import React, { Children } from "react";
 const AdminLayout = ({ children }) => {
   return (
    <div>
-    {/* <div>
+    <div>
       <Link href={'/'}>Quick Drop</Link>
-    </div> */}
+    </div>
      <div className="lg:flex-row flex flex-col h-screen">   
       <div className="lg:w-[18%] h-16 lg:h-full bg-amber-50 ">
         <DashboardSidebar />
