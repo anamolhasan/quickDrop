@@ -1,21 +1,309 @@
+// import NextAuth from "next-auth";
+// import GoogleProvider from "next-auth/providers/google";
+// import GithubProvider from "next-auth/providers/github";
+
+// export const authOptions = { 
+//     providers: [
+//         GoogleProvider({
+//             clientId: process.env.GOOGLE_CLIENT_ID,
+//             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+//         }),
+//         GithubProvider({
+//             clientId: process.env.GITHUB_CLIENT_ID, 
+//             clientSecret: process.env.GITHUB_CLIENT_SECRET,
+//         }),
+//           CredentialsProvider({
+//       name: "Credentials",
+//       credentials: {
+//         email: { label: "Email", type: "text" },
+//         password: { label: "Password", type: "password" }
+//       },
+//       async authorize(credentials) {
+//         const res = await fetch("http://localhost:5000/login", {
+//           method: "POST",
+//           headers: { "Content-Type": "application/json" },
+//           body: JSON.stringify(credentials),
+//         });
+//         const data = await res.json();
+
+//         if (res.ok && data.user) {
+//           return data.user; // returned here goes into session.user
+//         }
+//         return null;
+//       },
+//     }),
+//     ],
+//     secret: process.env.NEXTAUTH_SECRET
+// }
+
+// const handler = NextAuth(authOptions);
+
+// export { handler as GET, handler as POST };\
+
+
+
+
+
+
+
+
+
+
+
+// import NextAuth from "next-auth";
+// import GoogleProvider from "next-auth/providers/google";
+// import GithubProvider from "next-auth/providers/github";
+// import CredentialsProvider from "next-auth/providers/credentials";
+
+// export const authOptions = {
+//   providers: [
+//     GoogleProvider({
+//       clientId: process.env.GOOGLE_CLIENT_ID,
+//       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+//     }),
+//     GithubProvider({
+//       clientId: process.env.GITHUB_CLIENT_ID,
+//       clientSecret: process.env.GITHUB_CLIENT_SECRET,
+//     }),
+//     CredentialsProvider({
+//       name: "Credentials",
+//       credentials: {
+//         email: { label: "Email", type: "text" },
+//         password: { label: "Password", type: "password" },
+//       },
+//       async authorize(credentials) {
+//         const res = await fetch("http://localhost:5000/login", {
+//           method: "POST",
+//           headers: { "Content-Type": "application/json" },
+//           body: JSON.stringify(credentials),
+//         });
+
+//         const data = await res.json();
+
+//         if (res.ok && data.user) {
+//           // ✅ Must return all fields you need in session
+//           return {
+//             id: data.user._id,
+//             name: data.user.name,
+//             email: data.user.email,
+//             image: data.user.photo || null, // 👈 important for navbar
+//           };
+//         }
+//         return null;
+//       },
+//     }),
+//   ],
+
+//   secret: process.env.NEXTAUTH_SECRET,
+
+//   callbacks: {
+//   async jwt({ token, user }) {
+//     if (user) {
+//       token.id = user.id;
+//       token.name = user.name;
+//       token.email = user.email;
+//       token.image = user.image; // important
+//     }
+//     return token;
+//   },
+//   async session({ session, token }) {
+//     if (token) {
+//       session.user.id = token.id;
+//       session.user.name = token.name;
+//       session.user.email = token.email;
+//       session.user.image = token.image; // map image from token
+//     }
+//     return session;
+//   },
+// },
+
+// };
+
+// const handler = NextAuth(authOptions);
+
+// export { handler as GET, handler as POST };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import NextAuth from "next-auth";
+// import GoogleProvider from "next-auth/providers/google";
+// import GithubProvider from "next-auth/providers/github";
+// import CredentialsProvider from "next-auth/providers/credentials";
+
+// export const authOptions = {
+//   providers: [
+//     GoogleProvider({
+//       clientId: process.env.GOOGLE_CLIENT_ID,
+//       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+//     }),
+//     GithubProvider({
+//       clientId: process.env.GITHUB_CLIENT_ID,
+//       clientSecret: process.env.GITHUB_CLIENT_SECRET,
+//     }),
+//     CredentialsProvider({
+//       name: "Credentials",
+//       credentials: {
+//         email: { label: "Email", type: "text" },
+//         password: { label: "Password", type: "password" },
+//       },
+//       async authorize(credentials) {
+//         const res = await fetch("http://localhost:5000/login", {
+//           method: "POST",
+//           headers: { "Content-Type": "application/json" },
+//           body: JSON.stringify({
+//             email: credentials.email,
+//             password: credentials.password,
+//           }),
+//         });
+
+//         const data = await res.json();
+
+//         if (res.ok && data.user) {
+//           return {
+//             id: data.user.id,
+//             name: data.user.name,
+//             email: data.user.email,
+//             image: data.user.photo, // এখান থেকে session.user.image সেট হবে
+//             role: data.user.role,
+//           };
+//         }
+//         return null;
+//       },
+//     }),
+//   ],
+//   session: {
+//     strategy: "jwt",
+//   },
+//   callbacks: {
+//     async jwt({ token, user }) {
+//       if (user) {
+//         token.id = user.id;
+//         token.name = user.name;
+//         token.email = user.email;
+//         token.image = user.image;
+//         token.role = user.role;
+//       }
+//       return token;
+//     },
+//     async session({ session, token }) {
+//       if (token) {
+//         session.user.id = token.id;
+//         session.user.role = token.role;
+//         session.user.image = token.image;
+//       }
+//       return session;
+//     },
+//   },
+// };
+
+// const handler = NextAuth(authOptions);
+// export { handler as GET, handler as POST };
+
+
+
+
+
+
+
+
+
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
+import CredentialsProvider from "next-auth/providers/credentials";
 
-export const authOptions = { 
-    providers: [
-        GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        }),
-        GithubProvider({
-            clientId: process.env.GITHUB_CLIENT_ID, 
-            clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        })
-    ],
-    secret: process.env.NEXTAUTH_SECRET
-}
+export const authOptions = {
+  providers: [
+    // Google login
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+    // Github login
+    GithubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    }),
+    // Credentials login
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        try {
+          const res = await fetch("http://localhost:5000/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: credentials.email,
+              password: credentials.password,
+            }),
+          });
+
+          const data = await res.json();
+
+          if (data.success && data.user) {
+            return {
+              id: data.user.id,
+              name: data.user.name,
+              email: data.user.email,
+              image: data.user.photo || "https://i.ibb.co/2n8qPkw/default-avatar.png",
+              role: data.user.role,
+            };
+          }
+
+          return null; // Invalid credentials -> 401 Unauthorized
+        } catch (error) {
+          console.error("Authorize error:", error);
+          return null;
+        }
+      },
+    }),
+  ],
+  session: {
+    strategy: "jwt",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.name = user.name;
+        token.email = user.email;
+        token.image = user.image;
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.role = token.role;
+        session.user.image = token.image;
+        session.user.name = token.name;
+        session.user.email = token.email;
+      }
+      return session;
+    },
+  },
+  pages: {
+    signIn: "/login", // redirect login page
+  },
+  debug: true, // enable for dev
+};
 
 const handler = NextAuth(authOptions);
-
 export { handler as GET, handler as POST };
