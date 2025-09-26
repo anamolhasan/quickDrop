@@ -5,12 +5,12 @@ const DashboardSideMenuList = [
     
   },
   {
-    title: "Rider",
+    title: "Rider Applications",
     url: "/dashboard/rider",
     
   },
   {
-    title: "User",
+    title: "Users",
     url: "/dashboard/user",
    
   },

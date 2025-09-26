@@ -341,6 +341,7 @@ import { FaGithub } from "react-icons/fa";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginPage() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -390,6 +391,13 @@ export default function LoginPage() {
           <button onClick={() => signIn("github")} className="flex items-center justify-center gap-2 w-full bg-gray-900 text-white rounded-xl px-4 py-2">
             <FaGithub className="text-xl" /> Continue with GitHub
           </button>
+            <p className="text-[18px] text-center mt-6">
+//           Don’t have an account
+//           <Link href="/register" className="text-amber-500 underline mx-3">
+//             Register
+//           </Link>
+//           Here
+//         </p>
         </div>
       </form>
     </div>
