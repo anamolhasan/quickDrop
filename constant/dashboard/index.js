@@ -1,12 +1,12 @@
 const DashboardSideMenuList = [
-  {
-    title: "Overview",
-    url: "/dashboard",
+  // {
+  //   title: "Overview",
+  //   url: "/dashboard",
     
-  },
+  // },
   {
-    title: "Rider Applications",
-    url: "/dashboard/rider",
+    title: "Parcel Manage",
+    url: "/dashboard/parcel-manage",
     
   },
   {
