@@ -1,86 +1,21 @@
-// "use client";
-
-// import React, { useEffect, useState } from 'react';
-
-// const UsersPage = () => {
-//   const [users, setUsers] = useState([]);
-
-//   useEffect(() => {
-//     fetchUsers();
-//   }, []);
-
-//   const fetchUsers = async () => {
-//     try {
-//       const res = await fetch('http://localhost:5000/users');
-//       const data = await res.json();
-//       setUsers(data);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   return (
-//     <div className="p-4 ">
-//       <h1 className="text-2xl font-bold mb-4">Users</h1>
-//       <table className="min-w-full border border-gray-300">
-//         <thead className="bg-gray-100">
-//           <tr>
-//             <th className="border px-4 py-2">Photo</th>
-//             <th className="border px-4 py-2">Name</th>
-//             <th className="border px-4 py-2">Email</th>
-//             <th className="border px-4 py-2">Role</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {users.map(user => (
-//             <tr key={user._id} className="text-center">
-//               <td className="border px-4 py-2">
-//                 <img src={user.photo} alt={user.name} className="w-12 h-12 rounded-full mx-auto"/>
-//               </td>
-//               <td className="border px-4 py-2">{user.name}</td>
-//               <td className="border px-4 py-2">{user.email}</td>
-//               <td className="border px-4 py-2">
-//                 <select
-//                   value={user.role}
-//                   onChange={(e) => handleRoleChange(user._id, e.target.value)}
-//                   className="border rounded px-2 py-1"
-//                 >
-//                   <option value="user">User</option>
-//                   <option value="admin">Admin</option>
-//                   <option value="moderator">Moderator</option>
-//                   <option value="rider">Rider</option>
-//                 </select>
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// };
-
-// export default UsersPage;
-
-
-
-
-
 
 
 "use client";
 
 import React, { useEffect, useState } from "react";
 
+
+
 const UsersPage = () => {
   const [users, setUsers] = useState([]);
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   useEffect(() => {
     fetchUsers();
   }, []);
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch(`${apiUrl}/users`);
       const data = await res.json();
       setUsers(data);
     } catch (error) {
