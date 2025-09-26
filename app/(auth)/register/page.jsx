@@ -501,28 +501,38 @@ export default function RegisterPage() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const uploadImageToImgBB = async (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    return new Promise((resolve, reject) => {
-      reader.onloadend = async () => {
-        try {
-          const base64 = reader.result.split(",")[1];
-          const formData = new FormData();
-          formData.append("image", base64);
-          const res = await fetch(
-            `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_KEY}`,
-            { method: "POST", body: formData }
-          );
-          const data = await res.json();
-          if (data.success) resolve(data.data.url);
-          else reject("Image upload failed");
-        } catch (err) {
-          reject(err);
-        }
-      };
-      reader.onerror = reject;
-    });
-  };
+  if (!file) return null; // Guard against empty file
+
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+
+  return new Promise((resolve, reject) => {
+    reader.onloadend = async () => {
+      try {
+        const base64 = reader.result.split(",")[1]; // Remove prefix
+        if (!base64) throw new Error("Empty image");
+
+        const formData = new FormData();
+        formData.append("image", base64);
+
+        const res = await fetch(
+          `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_KEY}`,
+          { method: "POST", body: formData }
+        );
+
+        const data = await res.json();
+
+        if (data.success) resolve(data.data.url);
+        else reject(data.error?.message || "Image upload failed");
+      } catch (err) {
+        reject(err);
+      }
+    };
+
+    reader.onerror = (err) => reject(err);
+  });
+};
+
 
   const onSubmit = async (data) => {
     setLoading(true);
