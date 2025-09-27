@@ -4,6 +4,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export const authOptions = {
 
@@ -27,7 +28,7 @@ export const authOptions = {
       },
       async authorize(credentials) {
         try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+          const res = await fetch(`${apiUrl}/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
