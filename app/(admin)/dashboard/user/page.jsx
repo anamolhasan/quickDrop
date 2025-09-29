@@ -1,10 +1,6 @@
-
-
 "use client";
 
 import React, { useEffect, useState } from "react";
-
-
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -20,6 +16,33 @@ const UsersPage = () => {
       setUsers(data);
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const handleRoleChange = async (userId, newRole) => {
+    try {
+      const res = await fetch(`${apiUrl}/users/${userId}/role`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: newRole }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        // Update state to reflect the new role
+        setUsers((prev) =>
+          prev.map((user) =>
+            user._id === userId ? { ...user, role: newRole } : user
+          )
+        );
+        alert("Role updated successfully!");
+      } else {
+        alert(data.error || "Failed to update role");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error updating role");
     }
   };
 
@@ -63,10 +86,8 @@ const UsersPage = () => {
                 <td className="border px-4 py-2">{user.email}</td>
                 <td className="border px-4 py-2">
                   <select
-                    // value={user.role}
-                    // onChange={(e) =>
-                    //   handleRoleChange(user._id, e.target.value)
-                    // }
+                    value={user.role}
+                    onChange={(e) => handleRoleChange(user._id, e.target.value)}
                     className="border rounded-xl px-3 py-2 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-yellow-500 transition w-full"
                   >
                     <option value="user">User</option>
