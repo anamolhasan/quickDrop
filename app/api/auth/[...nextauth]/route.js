@@ -4,6 +4,8 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { signIn } from "next-auth/react";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export const authOptions = {
 
@@ -27,7 +29,7 @@ export const authOptions = {
       },
       async authorize(credentials) {
         try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+          const res = await fetch(`${apiUrl}/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -60,13 +62,38 @@ export const authOptions = {
     strategy: "jwt",
   },
   callbacks: {
+
+    
+    async signIn({user, account, profile}) {
+
+         
+      try{
+        await fetch (`${process.env.NEXT_PUBLIC_API_URL}/users`, {
+          method: 'POST',
+          headers: { "Content-type": "application/json"},
+          body: JSON.stringify({
+            name: user.name,
+            email: user.email,
+            photo: user.image
+          })
+        })
+      }
+           catch(error){
+            console.error('error saving social login user:', error)
+           }
+
+           return true;
+    },
+
+
+
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
         token.name = user.name;
         token.email = user.email;
         token.image = user.image;
-        token.role = user.role;
+        token.role = user.role || 'user';
       }
       return token;
     },

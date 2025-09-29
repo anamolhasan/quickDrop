@@ -48,9 +48,12 @@ const Hero = () => {
 
         {/* CTA Buttons */}
         <div className="mt-8 flex sm:flex-row gap-4 justify-center md:justify-start">
+          <Link href="Users/Sendpercel">
           <button className="flex items-center gap-2 px-6 py-3 rounded-xl bg-yellow-500 hover:bg-yellow-600 transition shadow-md text-black font-semibold">
             <FaBox /> Send Parcel
           </button>
+          </Link>
+          
           <Link href="/track-product">
             <button className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-gray-900 hover:bg-gray-200 transition shadow-md font-semibold">
               <FaSearch /> Track Now
