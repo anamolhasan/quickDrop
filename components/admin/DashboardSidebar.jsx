@@ -11,7 +11,8 @@ const DashboardSidebar = () => {
   return (
     <aside>
       {/* Desktop Sidebar */}
-      <div className="hidden lg:flex flex-col bg-gradient-to-b from-yellow-500 to-yellow-600 text-white w-64 min-h-screen p-6 shadow-xl">
+      <div className="hidden lg:flex flex-col fixed top-0 left-0 bg-gradient-to-b 
+                from-yellow-500 to-yellow-600 text-white w-64 h-screen p-6 shadow-xl">
         <h1 className="text-2xl font-bold mb-8 tracking-wide">Dashboard</h1>
         <nav className="space-y-3">
           {DashboardSideMenuList.map((item, index) => (
@@ -26,6 +27,10 @@ const DashboardSidebar = () => {
             </Link>
           ))}
         </nav>
+        <Link href="/">
+         <button className="p-4 rounded-2xl">Back to home</button>
+        </Link>
+       
       </div>
 
       {/* Mobile Navbar */}
