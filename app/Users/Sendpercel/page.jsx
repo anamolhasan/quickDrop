@@ -333,9 +333,34 @@ export default function SendParcelForm() {
         </div>
 
         {/* Receiver Info */}
-        <div></div>
+                    <div className="border p-4 rounded-xl shadow-md space-y-4">
+                        <h3 className="font-semibold text-xl">Receiver Info</h3>
+                        <div className="grid grid-cols-1 gap-4">
+                            <input {...register("receiver_name", { required: true })} className="input input-bordered w-full" placeholder="Name" />
+                            <input {...register("receiver_contact", { required: true })} className="input input-bordered w-full" placeholder="Contact" />
+                            <select {...register("receiver_region", { required: true })} className="select select-bordered w-full">
+                                <option value="">Select Region</option>
+                                {uniqueRegions.map((region) => (
+                                    <option key={region} value={region}>{region}</option>
+                                ))}
+                            </select>
+                            <select {...register("receiver_center", { required: true })} className="select select-bordered w-full">
+                                <option value="">Select Service Center</option>
+                                {getDistrictsByRegion(receiverRegion).map((district) => (
+                                    <option key={district} value={district}>{district}</option>
+                                ))}
+                            </select>
+                            <input {...register("receiver_address", { required: true })} className="input input-bordered w-full" placeholder="Address" />
+                            <textarea {...register("delivery_instruction", { required: true })} className="textarea textarea-bordered w-full" placeholder="Delivery Instruction" />
+                        </div>
+                    </div>
        </div>
 
+
+        {/* Submit Button */}
+        <div className="text-center">
+          <button className="btn btn-primary text-black">Submit</button>
+        </div>
       </form>
     </div>
   );
