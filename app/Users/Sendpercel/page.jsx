@@ -312,7 +312,23 @@ export default function SendParcelForm() {
           <h3 className="font-semibold text-xl">Sender Info</h3>
           <div className="grid grid-cols-1 gap-4">
             <input {...register('sender_name', {required:true})}
-            className="input input-borderded" />
+            className="input input-bordered w-full" placeholder="Name" />
+            <input {...register('sender_contact', {required:true})}
+            className="input input-bordered w-full" placeholder="Contact" />
+            <select {...register('sender_region')} className="select select-bordered w-full">
+              <option value="">Select Region</option>
+              {uniqueRegions.map((region) => (
+                <option key={region} value={region}>{region}</option>
+              ))}
+            </select>
+            <select {...register('sender_center', {required:true})} className="select select-bordered w-full" >
+               <option value="">Select Service Center</option>
+               {getDistrictsByRegion(senderRegion).map((district) => (
+                <option key={district} value={district}>{district}</option>
+               ))}
+            </select>
+             <input {...register("sender_address", { required: true })} className="input input-bordered w-full" placeholder="Address" />
+                            <textarea {...register("pickup_instruction", { required: true })} className="textarea textarea-bordered w-full" placeholder="Pickup Instruction" />
           </div>
         </div>
 
