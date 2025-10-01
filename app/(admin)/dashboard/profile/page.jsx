@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { motion } from "framer-motion";
 import {
@@ -15,7 +16,12 @@ import {
 } from "lucide-react";
 
 export default function ProfilePage() {
-  const { data: session, status } = useSession();
+  const { data: session, status, update } = useSession();
+
+  // Refresh session on component mount to get latest role
+  useEffect(() => {
+    if (update) update();
+  }, []);
 
   if (status === "loading") {
     return (
