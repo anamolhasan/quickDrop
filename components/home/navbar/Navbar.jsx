@@ -15,6 +15,8 @@ export default function Navbar() {
     signOut();
   };
 
+  const role = session?.user?.role || "guest"; // যদি role না থাকে, guest দেখাবে
+
   return (
     <nav className="sticky top-0 z-50 bg-gray-50/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/20">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16">
@@ -53,11 +55,18 @@ export default function Navbar() {
 
           {status === "authenticated" ? (
             <div className="flex items-center gap-4 ml-4">
-              <Link href="/dashboard">
-                <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
-                  Dashboard
-                </div>
-              </Link>
+              {status === "authenticated" && session.user?.role === "admin" && (
+                <Link href="/dashboard">
+                  <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
+                    Dashboard
+                  </div>
+                </Link>
+              )}
+
+              {/* Show Role */}
+              <span className="px-3 py-1 rounded-lg bg-yellow-500 text-white text-sm font-semibold">
+                {role.toUpperCase()}
+              </span>
 
               {/* Profile Image / Fallback */}
               {session.user?.image ? (
@@ -135,6 +144,11 @@ export default function Navbar() {
 
             {status === "authenticated" ? (
               <div className="flex flex-col items-center gap-4 mt-4">
+                {/* Role on mobile */}
+                <span className="px-3 py-1 rounded-lg bg-yellow-500 text-white text-sm font-semibold">
+                  {role.toUpperCase()}
+                </span>
+
                 <div className="flex items-center gap-3">
                   {session.user?.image ? (
                     <img

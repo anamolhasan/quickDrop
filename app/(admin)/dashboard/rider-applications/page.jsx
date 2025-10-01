@@ -1,50 +1,89 @@
 "use client";
+
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function RiderApplicationsPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
   const [riders, setRiders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedRider, setSelectedRider] = useState(null);
+  const [error, setError] = useState(null);
 
-  // Fetch riders
+  // Redirect non-admin users
+  useEffect(() => {
+    if (status === "authenticated" && session?.user?.role !== "admin") {
+      router.push("/"); // redirect non-admin
+    }
+  }, [status, session]);
+
+  // Fetch riders (Admin only)
   const fetchRiders = async () => {
+    if (!session?.token) return;
+
     try {
-      const res = await fetch("http://localhost:5000/riders");
+      setLoading(true);
+      const res = await fetch("http://localhost:5000/riders", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.token}`,
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch riders");
+      }
+
       const data = await res.json();
       setRiders(data);
-    } catch (error) {
-      console.error("Error fetching riders:", error);
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchRiders();
-  }, []);
+    if (status === "authenticated" && session?.user?.role === "admin") {
+      fetchRiders();
+    }
+  }, [status, session]);
 
   // Accept rider
   const handleAccept = async (id) => {
     try {
       const res = await fetch(`http://localhost:5000/riders/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.token}`,
+        },
         body: JSON.stringify({ status: "accepted" }),
       });
+
       if (res.ok) fetchRiders();
     } catch (error) {
       console.error("Error accepting rider:", error);
     }
   };
 
-  // Delete rider
+  // Remove rider
   const handleRemove = async (id) => {
     if (!confirm("Are you sure you want to remove this rider?")) return;
 
     try {
       const res = await fetch(`http://localhost:5000/riders/${id}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.token}`,
+        },
       });
+
       if (res.ok) setRiders(riders.filter((r) => r._id !== id));
     } catch (error) {
       console.error("Error removing rider:", error);
@@ -52,6 +91,7 @@ export default function RiderApplicationsPage() {
   };
 
   if (loading) return <p className="p-4">Loading riders...</p>;
+  if (error) return <p className="p-4 text-red-500">{error}</p>;
 
   return (
     <div className="p-4 md:p-6 lg:p-8">
