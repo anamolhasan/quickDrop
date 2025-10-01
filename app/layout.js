@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/home/navbar/Navbar";
@@ -6,9 +6,9 @@ import Footer from "@/components/home/footer/Footer";
 
 import { Toaster } from "react-hot-toast";
 
-
-import { Providers } from "./providers";  // 👈 we'll create this
+import { Providers } from "./providers"; // 👈 we'll create this
 import { usePathname } from "next/navigation";
+
 
 
 const geistSans = Geist({
@@ -27,7 +27,7 @@ const geistMono = Geist_Mono({
 // };
 
 export default function RootLayout({ children }) {
-   const pathname = usePathname();
+  const pathname = usePathname();
   const hideOnRoutes = ["/dashboard"];
   const shouldHide = pathname.startsWith("/dashboard");
   return (
@@ -35,19 +35,19 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>
+ 
 
-          {
-            !shouldHide && <Navbar />
-          }
+<Providers>
+            {!shouldHide && <Navbar />}
+
+            {children}
+            {!shouldHide && <Footer />}
+            <Toaster></Toaster>
+          </Providers>
+    
+
+  
           
-          {children}
-          {
-            !shouldHide &&  <Footer />
-          }
-           <Toaster></Toaster>
-
-        </Providers>
       </body>
     </html>
   );
