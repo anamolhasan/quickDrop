@@ -1,37 +1,34 @@
 'use client'
 
-
 import axios from "axios";
 import React from "react";
 import toast from "react-hot-toast";
+import { useSession } from "next-auth/react";
 
 const FeedbackForm = () => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const { data: session } = useSession();
 
   const handleFeedback = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const form = e.target 
+    const form = e.target;
+    const formData = new FormData(form);
+    const FeedbackForm = Object.fromEntries(formData.entries());
 
-    const formData = new FormData(form)
-    const FeedbackForm = Object.fromEntries(formData.entries())
+    // Include avatar from session if available
+    if (session?.user?.image) FeedbackForm.avatar = session.user.image;
 
-    // console.log(FeedbackForm)
-    // toast.success('Successfully toasted!')
+    axios.post(`${apiUrl}/feedback`, FeedbackForm)
+      .then(() => {
+        toast.success('Feedback submitted! 👍');
+      })
+      .catch(error => {
+        console.error(error);
+        toast.error('Failed to submit feedback');
+      });
 
-    axios.post(`${apiUrl}/feedback`,FeedbackForm )
-       .then(data => {
-        // console.log(data)
-        toast('Submit Feedback!', {
-          icon: '👍',
-        });
-       })
-       .catch(error => {
-        console.log(error)
-       })
-
-    
-    form.reset()
+    form.reset();
   }
 
   return (
@@ -53,8 +50,10 @@ const FeedbackForm = () => {
             <input
               type="text"
               name="name"
+              defaultValue={session?.user?.name || ''}
               placeholder="Enter your name"
               className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-yellow-500 transition"
+              required
             />
           </div>
 
@@ -66,8 +65,10 @@ const FeedbackForm = () => {
             <input
               type="email"
               name="email"
+              defaultValue={session?.user?.email || ''}
               placeholder="Enter your email"
               className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-yellow-500 transition"
+              required
             />
           </div>
 
@@ -77,10 +78,11 @@ const FeedbackForm = () => {
               Your Feedback
             </label>
             <textarea
-            name="feedback"
+              name="feedback"
               placeholder="Write your feedback..."
               rows="5"
               className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-yellow-500 transition"
+              required
             ></textarea>
           </div>
 

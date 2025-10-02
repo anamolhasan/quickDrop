@@ -42,11 +42,11 @@ export default function Navbar() {
               Be a Rider
             </div>
           </Link>
-          <Link href="/contact">
+          {/* <Link href="/contact">
             <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
               Contact
             </div>
-          </Link>
+          </Link> */}
           <Link href="/about">
             <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
               About
@@ -55,13 +55,13 @@ export default function Navbar() {
 
           {status === "authenticated" ? (
             <div className="flex items-center gap-4 ml-4">
-              {status === "authenticated" && session.user?.role === "admin" && (
+           
                 <Link href="/dashboard">
                   <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
                     Dashboard
                   </div>
                 </Link>
-              )}
+      
 
               {/* Show Role */}
               <span className="px-3 py-1 rounded-lg bg-yellow-500 text-white text-sm font-semibold">
@@ -131,14 +131,19 @@ export default function Navbar() {
                 Be a Rider
               </div>
             </Link>
-            <Link href="/contact" onClick={toggleMenu}>
+            {/* <Link href="/contact" onClick={toggleMenu}>
               <div className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center">
                 Contact
               </div>
-            </Link>
+            </Link> */}
             <Link href="/about" onClick={toggleMenu}>
               <div className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center">
                 About
+              </div>
+            </Link>
+            <Link href="/dashboard" onClick={toggleMenu}>
+              <div className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center">
+                Dashboard
               </div>
             </Link>
 
