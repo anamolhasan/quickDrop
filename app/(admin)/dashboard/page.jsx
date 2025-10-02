@@ -1,5 +1,7 @@
 import React from "react";
-import Overview from "./components/Overview";
+import ProfilePage from "./profile/page";
+
+
 
 
 const Dashboard = () => {
@@ -10,8 +12,8 @@ const Dashboard = () => {
       <h1 className="text-2xl font-bold mb-6 text-gray-800">
         Overview
       </h1>
-
-     <Overview />
+      <ProfilePage/>
+  
     </div>
   );
 };
