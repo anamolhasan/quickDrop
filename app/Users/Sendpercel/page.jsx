@@ -216,7 +216,7 @@
 
 "use client";
 
-import axios from "axios";
+
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -228,15 +228,19 @@ const generateTrackingID = () => {
 };
 
 export default function SendParcelForm() {
-  const {register, handleSubmit, watch, formState:{error}} = useForm()
+  const {register, handleSubmit, watch, formState:{errors}} = useForm()
   const [serviceCenters, setServiceCenters] = useState([]);
 
   useEffect(() => {
-    fetch("/serviceCenter.json")
+    fetch("/serviceCenter/serviceCenter.json")
       .then((res) => res.json())
-      .then((data) => setServiceCenters(data))
+      .then((data) => {
+          console.log("Fetched JSON:", data); 
+        setServiceCenters(data)})
       .catch((error) => console.log(error));
   }, []);
+
+  console.log(serviceCenters)
 
   // Extract unique regions
   const uniqueRegions = [...new Set(serviceCenters.map((w) => w.region))];
@@ -369,7 +373,7 @@ export default function SendParcelForm() {
                className="input input-bordered w-full"
                placeholder="Describe your parcel"
              />
-            {error.title && <p className="text-red-500 text-sm">Parcel name is required</p>}
+            {errors.title && <p className="text-red-500 text-sm">Parcel name is required</p>}
           </div>
 
           {/* Type */}
@@ -393,7 +397,7 @@ export default function SendParcelForm() {
                  Non-Document
               </label>
             </div>
-            {error.type && <p className="text-red-500 text-sm">Type is required</p>}
+            {errors.type && <p className="text-red-500 text-sm">Type is required</p>}
           </div>
 
           {/* Weight */}
@@ -416,7 +420,7 @@ export default function SendParcelForm() {
             className="input input-bordered w-full" placeholder="Name" />
             <input {...register('sender_contact', {required:true})}
             className="input input-bordered w-full" placeholder="Contact" />
-            <select {...register('sender_region')} className="select select-bordered w-full">
+            <select {...register('sender_region', {require: true}) }className="select select-bordered w-full">
               <option value="">Select Region</option>
               {uniqueRegions.map((region) => (
                 <option key={region} value={region}>{region}</option>
