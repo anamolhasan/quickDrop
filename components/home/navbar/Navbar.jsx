@@ -42,14 +42,9 @@ export default function Navbar() {
               Be a Rider
             </div>
           </Link>
-          {/* <Link href="/contact">
+          <Link href="/coverage">
             <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
-              Contact
-            </div>
-          </Link> */}
-          <Link href="/about">
-            <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
-              About
+              Coverage
             </div>
           </Link>
 

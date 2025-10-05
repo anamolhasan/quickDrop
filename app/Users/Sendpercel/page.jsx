@@ -217,8 +217,10 @@
 "use client";
 
 
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const generateTrackingID = () => {
   const date = new Date();
@@ -324,6 +326,7 @@ export default function SendParcelForm() {
 
                 console.log("Ready for payment:", parcelData);
                 
+                // -------------------------------
                 // axios.post('/parcels', parcelData)
                 //     .then(async(res) => {
                 //         console.log(res.data);
@@ -344,7 +347,7 @@ export default function SendParcelForm() {
                 //                 updated_by: user.email,
                 //             })
 
-                //             navigate('/dashboard/myParcels')
+                //             // navigate('/dashboard/myParcels')
                 //         }
                 //     })
                 
