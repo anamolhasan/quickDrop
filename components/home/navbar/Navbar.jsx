@@ -15,7 +15,7 @@ export default function Navbar() {
     signOut();
   };
 
-  const role = session?.user?.role || "guest"; // যদি role না থাকে, guest দেখাবে
+  const role = session?.user?.role || "guest"; 
 
   return (
     <nav className="sticky top-0 z-50 bg-gray-50/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/20">
