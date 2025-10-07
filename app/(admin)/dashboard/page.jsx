@@ -1,5 +1,6 @@
 import React from "react";
 import ProfilePage from "./profile/page";
+import AdminOverviewSection from "./components/Overview";
 
 
 
@@ -12,7 +13,7 @@ const Dashboard = () => {
       <h1 className="text-2xl font-bold mb-6 text-gray-800">
     
       </h1>
-      <ProfilePage/>
+      <AdminOverviewSection></AdminOverviewSection>
   
     </div>
   );
