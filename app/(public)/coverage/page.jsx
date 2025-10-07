@@ -2,18 +2,23 @@
 
 import React, { useEffect, useState } from 'react'
 import BangladeshMap from './components/BangladeshMap'
+import { useSession } from 'next-auth/react'
 
 export default function page() {
   const [serviceCenters, setServiceCenters] = useState([])
+
+  const {data: session} = useSession()
+  
+  console.log(session?.user?.email)
 
   useEffect(()=>{
      fetch('/serviceCenter/serviceCenter.json')
        .then(res => res.json())
        .then(data => {
-        console.log(data)
+        // console.log(data)
         setServiceCenters(data)
-        .catch(error => console.log(error))
-       })
+      })
+      .catch(error => console.log(error))
   },[])
   return (
    <div className="max-w-4xl mx-auto px-4 py-10">

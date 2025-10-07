@@ -60,7 +60,7 @@ const DashboardSideMenuList = [
   // },
   {
     title: "My parcels",
-    url: "/dashboard/my-products",
+    url: "/dashboard/my-parcel",
     icon: <FaBox />,
     roles: ["user"], 
   },
