@@ -5,11 +5,17 @@ import {
   FaClipboardList,
   FaComments,
   FaUser,
-  FaMoneyBillWave, FaTruck, FaCheckCircle, FaClock, FaEdit
+  FaMoneyBillWave, FaChartBar, FaTruck, FaCheckCircle, FaClock, FaEdit
 } from "react-icons/fa";
 
 const DashboardSideMenuList = [
  
+  {
+    title: "Overview",
+    url: "/dashboard",
+    icon: <FaChartBar />,
+    roles: ["admin"], // only admin
+  },
   {
     title: "Users",
     url: "/dashboard/user",

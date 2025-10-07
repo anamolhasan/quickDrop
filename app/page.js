@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <Banner/>
       <WeWork/>
-      <WhyChose/>
+      {/* <WhyChose/> */}
       <State/>
       <OurService/>
       <FAQ/>
