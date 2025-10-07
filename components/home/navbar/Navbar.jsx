@@ -1,29 +1,52 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaGlobe } from "react-icons/fa";
 import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState("English");
   const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleLanguage = () => setIsLanguageOpen(!isLanguageOpen);
 
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   const handleLogout = () => {
     toggleMenu();
     signOut();
   };
 
-  const role = session?.user?.role || "guest"; 
+  const handleProtectedClick = (path) => {
+    if (status !== "authenticated") {
+      router.push("/login");
+    } else {
+      router.push(path);
+    }
+    toggleMenu();
+  };
+
+  const handleLanguageChange = (path) => {
+    setCurrentLanguage(language);
+    setIsLanguageOpen(false);
+    // Add your language change logic here
+    console.log(`Language changed to: ${language}`);
+  };
+
+  const role = session?.user?.role || "guest";
 
   return (
     <nav className="sticky top-0 z-50 bg-gray-50/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/20 dark:border-gray-700/20">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16">
         {/* Logo */}
-        <div className="text-2xl font-extrabold bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 cursor-pointer">
-          QuickDrop
-        </div>
+        <Link href="/">
+          <div className="text-2xl font-extrabold bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 cursor-pointer">
+            QuickDrop
+          </div>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-1 text-gray-700 dark:text-gray-200 font-medium">
@@ -37,26 +60,73 @@ export default function Navbar() {
               Pricing
             </div>
           </Link>
-          <Link href="/be-a-rider">
-            <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
-              Be a Rider
-            </div>
-          </Link>
+
+          {/* Send Parcel - Protected */}
+          <div
+            onClick={() => handleProtectedClick("/Users/Sendpercel")}
+            className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer"
+          >
+            Send Parcel
+          </div>
+
+          {/* Be a Rider - Protected */}
+          <div
+            onClick={() => handleProtectedClick("/be-a-rider")}
+            className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer"
+          >
+            Be a Rider
+          </div>
+
           <Link href="/coverage">
             <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
               Coverage
             </div>
           </Link>
 
+          {/* Language Toggler */}
+          <div className="relative ml-2">
+            <button
+              onClick={toggleLanguage}
+              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200"
+            >
+              <FaGlobe className="text-gray-600 dark:text-gray-300" />
+              <span className="text-sm font-medium">{currentLanguage}</span>
+            </button>
+
+            {/* Language Dropdown */}
+            {isLanguageOpen && (
+              <div className="absolute top-full left-0 mt-2 w-40 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50">
+                <button
+                  onClick={() => handleLanguageChange("English")}
+                  className={`w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
+                    currentLanguage === "English" 
+                      ? "bg-yellow-50 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400" 
+                      : "text-gray-700 dark:text-gray-300"
+                  }`}
+                >
+                  English
+                </button>
+                <button
+                  onClick={() => handleLanguageChange("Bangla")}
+                  className={`w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
+                    currentLanguage === "Bangla" 
+                      ? "bg-yellow-50 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400" 
+                      : "text-gray-700 dark:text-gray-300"
+                  }`}
+                >
+                  বাংলা
+                </button>
+              </div>
+            )}
+          </div>
+
           {status === "authenticated" ? (
             <div className="flex items-center gap-4 ml-4">
-           
-                <Link href="/dashboard">
-                  <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
-                    Dashboard
-                  </div>
-                </Link>
-      
+              <Link href="/dashboard">
+                <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
+                  Dashboard
+                </div>
+              </Link>
 
               {/* Show Role */}
               <span className="px-3 py-1 rounded-lg bg-yellow-500 text-white text-sm font-semibold">
@@ -66,7 +136,7 @@ export default function Navbar() {
               {/* Profile Image / Fallback */}
               {session.user?.image ? (
                 <img
-                  src={session.user.image}
+                  src={session.user.photo}
                   alt={session.user.name || "User Avatar"}
                   className="w-10 h-10 rounded-full border-2 border-yellow-500"
                 />
@@ -121,26 +191,65 @@ export default function Navbar() {
                 Pricing
               </div>
             </Link>
-            <Link href="/be-a-rider" onClick={toggleMenu}>
+
+            {/* Send Parcel - Protected Mobile */}
+            <div
+              onClick={() => handleProtectedClick("/Users/Sendpercel")}
+              className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center"
+            >
+              Send Parcel
+            </div>
+
+            {/* Be a Rider - Protected Mobile */}
+            <div
+              onClick={() => handleProtectedClick("/be-a-rider")}
+              className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center"
+            >
+              Be a Rider
+            </div>
+
+            <Link href="/coverage" onClick={toggleMenu}>
               <div className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center">
-                Be a Rider
+                Coverage
               </div>
             </Link>
-            {/* <Link href="/contact" onClick={toggleMenu}>
-              <div className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center">
-                Contact
-              </div>
-            </Link> */}
-            <Link href="/about" onClick={toggleMenu}>
-              <div className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center">
-                About
-              </div>
-            </Link>
-            <Link href="/dashboard" onClick={toggleMenu}>
-              <div className="px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer text-center">
-                Dashboard
-              </div>
-            </Link>
+
+            {/* Mobile Language Toggler */}
+            <div className="relative mt-2">
+              <button
+                onClick={toggleLanguage}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200"
+              >
+                <FaGlobe className="text-gray-600 dark:text-gray-300" />
+                <span className="font-medium">{currentLanguage}</span>
+              </button>
+
+              {/* Mobile Language Dropdown */}
+              {isLanguageOpen && (
+                <div className="mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 py-2">
+                  <button
+                    onClick={() => handleLanguageChange("English")}
+                    className={`w-full px-4 py-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
+                      currentLanguage === "English" 
+                        ? "bg-yellow-50 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400" 
+                        : "text-gray-700 dark:text-gray-300"
+                    }`}
+                  >
+                    English
+                  </button>
+                  <button
+                    onClick={() => handleLanguageChange("Bangla")}
+                    className={`w-full px-4 py-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ${
+                      currentLanguage === "Bangla" 
+                        ? "bg-yellow-50 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400" 
+                        : "text-gray-700 dark:text-gray-300"
+                    }`}
+                  >
+                    বাংলা
+                  </button>
+                </div>
+              )}
+            </div>
 
             {status === "authenticated" ? (
               <div className="flex flex-col items-center gap-4 mt-4">
@@ -182,6 +291,14 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+
+      {/* Overlay for language dropdown */}
+      {isLanguageOpen && (
+        <div 
+          className="fixed inset-0 z-40" 
+          onClick={() => setIsLanguageOpen(false)}
+        />
+      )}
     </nav>
   );
 }
