@@ -2,7 +2,6 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useState } from "react";
-// import { useState } from "react";
 
 const position = [23.685, 90.3563]; // Center of Bangladesh
 
@@ -21,6 +20,7 @@ function FlyToDistrict({ coords }) {
   }
   return null;
 }
+
 
 const BangladeshMap = ({ serviceCenters }) => {
   const [searchText, setSearchText] = useState("");
