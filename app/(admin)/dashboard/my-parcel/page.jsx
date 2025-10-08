@@ -32,7 +32,7 @@ const MyParcelsPage = () => {
 
     const handlePay = (id) => {
         console.log("Proceed to payment for", id);
-       router.push(`/dashboard/payment/${id}`)
+       router.push(`/dashboard/my-parcel/${id}`)
     };
 
     const handleDelete = async (id) => {
