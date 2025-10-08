@@ -1,8 +1,14 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import BangladeshMap from './components/BangladeshMap'
 import { useSession } from 'next-auth/react'
+import dynamic from 'next/dynamic'
+
+// import BangladeshMap from './components/BangladeshMap'
+// dynamic import – disables SSR for Leaflet
+const BangladeshMap = dynamic(() => import('./components/BangladeshMap'), {
+  ssr: false,
+})
 
 export default function page() {
   const [serviceCenters, setServiceCenters] = useState([])
