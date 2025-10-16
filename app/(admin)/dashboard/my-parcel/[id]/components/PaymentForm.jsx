@@ -93,7 +93,7 @@ console.log(id)
                     const transactionId = result.paymentIntent.id;
                     // step-4 mark parcel paid also create payment history
                     const paymentData = {
-                        id,
+                        parcelId: id,
                         email: session?.user.email,
                         amount,
                         transactionId: transactionId,
