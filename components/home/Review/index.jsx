@@ -5,6 +5,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function FeedbackSlider() {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -15,7 +16,7 @@ export default function FeedbackSlider() {
     const fetchFeedback = async () => {
       try {
         setIsLoading(true);
-        const res = await fetch("http://localhost:5000/feedback");
+        const res = await fetch(`${apiUrl}/feedback`);
         const data = await res.json();
         setFeedbacks(data);
       } catch (err) {
