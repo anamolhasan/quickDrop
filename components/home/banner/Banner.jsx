@@ -5,6 +5,8 @@ import Link from "next/link";
 import { FaBox, FaSearch } from "react-icons/fa";
 
 const Hero = () => {
+  
+
   return (
     <section className="relative w-full h-[90vh] flex items-center">
       {/* Background Image for Desktop */}
