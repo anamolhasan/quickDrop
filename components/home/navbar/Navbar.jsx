@@ -82,7 +82,7 @@ export default function Navbar() {
               Coverage
             </div>
           </Link>
-
+       
           {/* Language Toggler */}
           <div className="relative ml-2">
             <button

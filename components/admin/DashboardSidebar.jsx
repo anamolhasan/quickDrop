@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
+
 export default function DashboardSidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -140,6 +141,8 @@ export default function DashboardSidebar() {
               </p>
             </div>
           )}
+
+       
           {/* <button
             onClick={() => setIsCollapsed(!isCollapsed)}
             className="p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 
