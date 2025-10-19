@@ -9,6 +9,8 @@ import { Toaster } from "react-hot-toast";
 import { Providers } from "./providers"; // 👈 we'll create this
 import NavbarFooterWrapper from "./NavbarFooterWrapper/NavbarFooterWrapper";
 import QueryProvider from "./provider/QueryProvider";
+import FloatingChatbot from "./(public)/chatbot/FloatingChatbot";
+import OfferModal from "@/components/OfferModal";
 // import { usePathname } from "next/navigation";
 
 const geistSans = Geist({
@@ -43,6 +45,8 @@ export default function RootLayout({ children }) {
            <QueryProvider>
                 <NavbarFooterWrapper>
                 {children}
+                <FloatingChatbot></FloatingChatbot>
+                <OfferModal />
               </NavbarFooterWrapper>
               <Toaster></Toaster>
            </QueryProvider>
