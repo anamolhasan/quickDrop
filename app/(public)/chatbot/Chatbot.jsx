@@ -1,7 +1,7 @@
 "use client"
 import { useState, useRef, useEffect } from 'react';
 
-const BACKEND_URL = 'http://localhost:5000';
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
@@ -29,7 +29,7 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${BACKEND_URL}/api/chatbot/message`, {
+      const response = await fetch(`${apiUrl}/api/chatbot/message`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

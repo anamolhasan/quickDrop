@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-const BACKEND_URL = 'http://localhost:5000';
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const FloatingChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +49,7 @@ const FloatingChatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${BACKEND_URL}/api/chatbot/message`, {
+      const response = await fetch(`${apiUrl}/api/chatbot/message`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
