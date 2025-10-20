@@ -5,7 +5,7 @@ import {
   FaClipboardList,
   FaComments,
   FaUser,
-  FaMoneyBillWave, FaChartBar, FaTruck, FaCheckCircle, FaClock, FaEdit
+  FaMoneyBillWave, FaChartBar, FaTruck, FaCheckCircle, FaClock, FaEdit, FaTag
 } from "react-icons/fa";
 
 const DashboardSideMenuList = [
@@ -45,6 +45,12 @@ const DashboardSideMenuList = [
     url: "/dashboard/user-feedback",
     icon: <FaComments />,
     roles: ["admin"],  // only admin
+  },
+    {
+    title: "Offer Management",
+    url: "/dashboard/offers",
+    icon: <FaTag />,
+    roles: ["admin"],
   },
   {
     title: "Update profile",
