@@ -5,7 +5,7 @@ import {
   FaClipboardList,
   FaComments,
   FaUser,
-  FaMoneyBillWave, FaChartBar, FaTruck, FaCheckCircle, FaClock, FaEdit, FaTag
+  FaMoneyBillWave, FaChartBar, FaTruck, FaCheckCircle, FaClock, FaEdit, FaTag,  FaFileAlt  , FaShieldAlt,   FaCamera, FaSignature
 } from "react-icons/fa";
 
 const DashboardSideMenuList = [
@@ -52,6 +52,18 @@ const DashboardSideMenuList = [
     icon: <FaTag />,
     roles: ["admin"],
   },
+   {
+    title: "Delivery Proofs",
+    url: "/dashboard/delivery-proofs",
+    icon: <FaShieldAlt />,
+    roles: ["admin"],
+  },
+  {
+    title: "POD Analytics",
+    url: "/dashboard/pod-analytics",
+    icon: <FaFileAlt />,
+    roles: ["admin"],
+  },
   {
     title: "Update profile",
     url: "/dashboard/profile",
@@ -82,6 +94,12 @@ const DashboardSideMenuList = [
     icon: <FaTruck />,
     roles: ["user"], 
   },
+    {
+    title: "Delivery Proofs",
+    url: "/dashboard/my-delivery-proofs",
+    icon: <FaCamera />,
+    roles: ["user"],
+  },
    {
     title: "Completed delivery",
     url: "/dashboard/complited-delevry",
@@ -99,6 +117,18 @@ const DashboardSideMenuList = [
     url: "/dashboard/earning",
     icon: <FaMoneyBillWave />, 
     roles: ["rider"], 
+  },
+   {
+    title: "POD Delivery",
+    url: "/dashboard/pod-delivery",
+    icon: <FaSignature />,
+    roles: ["rider"],
+  },
+  {
+    title: "POD History",
+    url: "/dashboard/pod-history",
+    icon: <FaFileAlt />,
+    roles: ["rider"],
   },
 ];
 
