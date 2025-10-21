@@ -1,6 +1,6 @@
 'use client'
 
-import useTrackingLogger from '@/app/Users/components/useTrackingLogger'
+import useTrackingLogger from '@/app/users/components/useTrackingLogger'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
@@ -14,14 +14,23 @@ export default function PendingParcelManage() {
     const {data: session} = useSession()
 
     // Load parcels assigned to the current rider
+    // const {data : parcels = [],isPending} = useQuery({
+    //     queryKey: ['riderParcels'],
+    //     enabled: !!session?.user?.email,
+    //     queryFn: async () => {
+    //         const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/rider/parcels?email=${session?.user?.email}`)
+    //         return res.data
+    //     }
+    // })
     const {data : parcels = [],isPending} = useQuery({
         queryKey: ['riderParcels'],
         enabled: !!session?.user?.email,
         queryFn: async () => {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/rider/parcels?email=${session?.user?.email}`)
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/parcels`)
             return res.data
         }
     })
+    console.log(parcels)
 
     // Mutation for updating parcel status
     const {mutateAsync: updateStatus} = useMutation({
@@ -59,7 +68,7 @@ export default function PendingParcelManage() {
                                 tracking_id: parcel.tracking_id,
                                 status: newStatus,
                                 details: trackDetails,
-                                updated_by: user.email,
+                               updated_by: session?.user?.email,
                             });
 
                     })

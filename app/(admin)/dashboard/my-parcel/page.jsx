@@ -93,7 +93,7 @@ const MyParcelsPage = () => {
         parcels.map((parcel, index) => (
           <tr
             key={parcel._id}
-            className="hover:bg-gray-400 transition-colors duration-200"
+            className="hover:bg-gray-800 transition-colors duration-200"
           >
             <td className="font-semibold text-gray-600">{index + 1}</td>
             <td className="max-w-[200px] truncate">{parcel.title}</td>
