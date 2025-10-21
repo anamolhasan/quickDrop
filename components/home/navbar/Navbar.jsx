@@ -63,7 +63,7 @@ export default function Navbar() {
 
           {/* Send Parcel - Protected */}
           <div
-            onClick={() => handleProtectedClick("/users/Sendpercel")}
+            onClick={() => handleProtectedClick("/Users/Sendpercel")}
             className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer"
           >
             Send Parcel
