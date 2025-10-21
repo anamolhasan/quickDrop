@@ -1,4 +1,4 @@
-
+'use client'
 import Link from "next/link";
 import React from "react";
 import { FaFacebook, FaTwitter, FaYoutubeSquare } from "react-icons/fa";
@@ -18,15 +18,15 @@ const Footer = () => {
             Fast, reliable, and secure courier services across Bangladesh. Join thousands of happy customers today.
           </p>
           <div className="flex space-x-4 mt-4">
-            <Link href="#" title="Facebook" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+            <a href="#" title="Facebook" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
               <FaFacebook className="text-gray-700 dark:text-gray-200" />
-            </Link>
-            <Link href="#" title="Twitter" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+            </a>
+            <a href="#" title="Twitter" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
               <FaTwitter className="text-gray-700 dark:text-gray-200" />
-            </Link>
-            <Link href="#" title="YouTube" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+            </a>
+            <a href="#" title="YouTube" className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
               <FaYoutubeSquare className="text-gray-700 dark:text-gray-200" />
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -34,10 +34,10 @@ const Footer = () => {
         <div className="space-y-4">
           <h3 className="text-gray-900 dark:text-white font-bold uppercase tracking-wide">Product</h3>
           <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-            <li><Link href="#" className="hover:text-yellow-500 transition">Features</Link></li>
-            <li><Link href="#" className="hover:text-yellow-500 transition">Integrations</Link></li>
+            <li><Link href="/Features" className="hover:text-yellow-500 transition">Features</Link></li>
+            <li><Link href="/Integrations" className="hover:text-yellow-500 transition">Integrations</Link></li>
             {/* <li><Link href="#" className="hover:text-yellow-500 transition">Pricing</Link></li> */}
-            <li><Link href="#" className="hover:text-yellow-500 transition">FAQ</Link></li>
+            <li><Link href="/FAQ" className="hover:text-yellow-500 transition">FAQ</Link></li>
           </ul>
         </div>
 
@@ -46,9 +46,9 @@ const Footer = () => {
           <h3 className="text-gray-900 dark:text-white font-bold uppercase tracking-wide">Company</h3>
           <ul className="space-y-2 text-gray-600 dark:text-gray-400">
             <li><Link href="/about" className="hover:text-yellow-500 transition">About</Link></li>
-            <li><Link href="#" className="hover:text-yellow-500 transition">Contact</Link></li>
-            <li><Link href="/contact" className="hover:text-yellow-500 transition">Privacy</Link></li>
-            <li><Link href="#" className="hover:text-yellow-500 transition">Terms of Service</Link></li>
+            <li><Link href="/contact" className="hover:text-yellow-500 transition">Contact</Link></li>
+            <li><Link href="/Privacy" className="hover:text-yellow-500 transition">Privacy</Link></li>
+            <li><Link href="/PrivTerms-of-Service" className="hover:text-yellow-500 transition">Terms of Service</Link></li>
           </ul>
         </div>
 
@@ -56,9 +56,9 @@ const Footer = () => {
         <div className="space-y-4">
           <h3 className="text-gray-900 dark:text-white font-bold uppercase tracking-wide">Developers</h3>
           <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-            <li><Link href="#" className="hover:text-yellow-500 transition">Public API</Link></li>
-            <li><Link href="#" className="hover:text-yellow-500 transition">Documentation</Link></li>
-            <li><Link href="#" className="hover:text-yellow-500 transition">Guides</Link></li>
+            <li><Link href="/Public-API" className="hover:text-yellow-500 transition">Public API</Link></li>
+            <li><Link href="/Documentation" className="hover:text-yellow-500 transition">Documentation</Link></li>
+            <li><Link href="/Guides" className="hover:text-yellow-500 transition">Guides</Link></li>
           </ul>
         </div>
       </div>
