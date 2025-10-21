@@ -1,6 +1,6 @@
 'use client'
 
-import useTrackingLogger from '@/app/Users/components/useTrackingLogger';
+import useTrackingLogger from '@/app/users/components/useTrackingLogger';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -18,7 +18,7 @@ const PaymentForm = () => {
     // const axiosSecure = useAxiosSecure();
     const {logTracking} = useTrackingLogger()
     // const navigate = useNavigate();
-console.log(id)
+// console.log(id)
     const [error, setError] = useState('');
 
 

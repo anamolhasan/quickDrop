@@ -163,7 +163,7 @@ const Hero = ({ activeOffer }) => {
 
         {/* CTA Buttons */}
         <div className="mt-8 flex sm:flex-row gap-4 justify-center md:justify-start">
-          <Link href="Users/Sendpercel">
+          <Link href="/users/Sendpercel">
             <button className="flex items-center gap-2 px-6 py-3 rounded-xl bg-yellow-500 hover:bg-yellow-600 transition shadow-md text-black font-semibold">
               <FaBox /> Send Parcel
             </button>
