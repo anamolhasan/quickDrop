@@ -20,14 +20,14 @@ export default function Navbar() {
     signOut();
   };
 
-  const handleProtectedClick = (path) => {
-    if (status !== "authenticated") {
-      router.push("/login");
-    } else {
-      router.push(path);
-    }
-    toggleMenu();
-  };
+  // const handleProtectedClick = (path) => {
+  //   if (status !== "authenticated") {
+  //     router.push("/login");
+  //   } else {
+  //     router.push(path);
+  //   }
+  //   toggleMenu();
+  // };
 
   const handleLanguageChange = (path) => {
     setCurrentLanguage(language);
@@ -62,20 +62,32 @@ export default function Navbar() {
           </Link>
 
           {/* Send Parcel - Protected */}
-          <div
-            onClick={() => handleProtectedClick("/Users/Sendpercel")}
+          <Link
+            href="/users/Sendpercel"
             className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer"
           >
             Send Parcel
-          </div>
+          </Link>
+          {/* <div
+            onClick={() => handleProtectedClick("/users/Sendpercel")}
+            className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer"
+          >
+            Send Parcel
+          </div> */}
 
           {/* Be a Rider - Protected */}
-          <div
+          <Link
+            href="/be-a-rider"
+            className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer"
+          >
+            Be a Rider
+          </Link>
+          {/* <div
             onClick={() => handleProtectedClick("/be-a-rider")}
             className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer"
           >
             Be a Rider
-          </div>
+          </div> */}
 
           <Link href="/coverage">
             <div className="px-4 py-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 cursor-pointer">
